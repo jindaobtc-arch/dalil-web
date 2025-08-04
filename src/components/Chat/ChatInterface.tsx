@@ -108,18 +108,27 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user, onAuthModalO
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <BookmarkCheck className="w-8 h-8 text-green-600" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              Assalamu alaykum wa rahmatullahi wa barakatuh
-            </h2>
-            <p className="text-gray-600 mb-4">
-              Je suis Dalil, votre assistant islamique éducatif. Posez-moi vos questions sur l'Islam et je vous fournirai des réponses basées sur le Coran et la Sunnah authentique selon la compréhension des Salaf as-Salih.
-            </p>
-            <p className="text-sm text-green-600 mb-2">
-              {import.meta.env.VITE_OPENAI_API_KEY ? 
-                "✨ IA avancée activée - Réponses personnalisées et détaillées" : 
-                "Mode de base - Configurez l'API OpenAI pour des réponses plus avancées"
-              }
-            </p>
+           <h2 className="text-xl font-semibold text-gray-900 mb-2">
+  السّلام عليكم ورحمة الله وبركاته
+</h2>
+<p className="text-gray-600 mb-4">
+  Louange à Allâh, Seigneur des Mondes. Que la paix et les bénédictions d’Allâh soient sur notre Prophète Muhammad ﷺ, sa famille, ses Compagnons et ceux qui suivent leur voie avec droiture jusqu’au Jour de la Rétribution.
+</p>
+<p className="text-gray-600 mb-4">
+  Je suis <strong>Dalil</strong>, un assistant islamique virtuel conçu pour transmettre la science fondée sur le <strong>Coran</strong>, la <strong>Sunnah authentique</strong> et la compréhension des <em>Salaf as-Sâlih</em>, selon la méthodologie des gens de la Sunnah et du consensus.
+</p>
+<p className="text-gray-600 mb-4">
+  Posez vos questions dans les domaines de la croyance (<em>‘aqîda</em>), de la jurisprudence (<em>fiqh</em>), du comportement (<em>adab</em>) ou autres, et je vous apporterai avec l’aide d’Allâh une réponse basée sur des sources sûres, et les paroles de savants dignes de confiance, anciens et contemporains.
+</p>
+<p className="text-gray-600 mb-4 italic">
+  ⚠️ Je ne remplace pas un savant ni une fatwâ personnelle. En cas de doute spécifique, rapprochez-vous des gens de science.
+</p>
+<p className="text-sm text-green-600 mb-2">
+  {import.meta.env.VITE_OPENAI_API_KEY ? 
+    "✨ Mode IA activée : réponses contextualisées, sourcées et conformes à la voie salafiyya" : 
+    "Mode de base : configurez l’API OpenAI pour activer les fonctionnalités avancées"
+  }
+</p>
             <p className="text-xs text-gray-500">
               {import.meta.env.VITE_OPENAI_API_KEY ? 
                 "✨ IA avancée activée - Réponses personnalisées et détaillées" : 
