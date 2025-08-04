@@ -82,8 +82,24 @@ function App() {
   };
 
   const handleSignUp = async (email: string, password: string) => {
-    const { error } = await signUp(email, password);
-    if (error) throw error;
+    try {
+      const { data, error } = await signUp(email, password);
+      if (error) {
+        console.error('Signup error:', error);
+        throw error;
+      }
+      
+      // Si l'inscription réussit, essayer de récupérer le profil utilisateur
+      if (data.user) {
+        // Attendre un peu pour que le trigger de création de profil s'exécute
+        setTimeout(() => {
+          fetchUserProfile(data.user!.id);
+        }, 1000);
+      }
+    } catch (error) {
+      console.error('Error in handleSignUp:', error);
+      throw error;
+    }
   };
 
   const handleSignOut = async () => {

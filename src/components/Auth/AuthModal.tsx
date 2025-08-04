@@ -32,26 +32,30 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     try {
       if (mode === 'signin') {
         await onSignIn(email, password);
+        onClose();
       } else {
         await onSignUp(email, password);
-        setError('Inscription réussie ! Vous pouvez maintenant vous connecter.');
-        setMode('signin');
+        // Inscription réussie, fermer la modal
+        onClose();
         setEmail('');
         setPassword('');
-        setIsLoading(false);
-        return;
       }
-      onClose();
     } catch (err: any) {
       console.error('Auth error:', err);
-      if (err.message?.includes('User already registered')) {
+      
+      // Gestion des erreurs spécifiques
+      if (err.message?.includes('User already registered') || err.message?.includes('already been registered')) {
         setError('Cet email est déjà utilisé. Essayez de vous connecter.');
-      } else if (err.message?.includes('Invalid email')) {
+      } else if (err.message?.includes('Invalid email') || err.message?.includes('invalid_email')) {
         setError('Adresse email invalide.');
-      } else if (err.message?.includes('Password')) {
+      } else if (err.message?.includes('Password') || err.message?.includes('password')) {
         setError('Le mot de passe doit contenir au moins 6 caractères.');
+      } else if (err.message?.includes('Invalid login credentials')) {
+        setError('Email ou mot de passe incorrect.');
+      } else if (err.message?.includes('Email not confirmed')) {
+        setError('Veuillez vérifier votre email pour confirmer votre compte.');
       } else {
-        setError('Une erreur est survenue lors de l\'inscription. Veuillez réessayer.');
+        setError(mode === 'signin' ? 'Erreur de connexion. Vérifiez vos identifiants.' : 'Erreur d\'inscription. Vérifiez votre email et mot de passe.');
       }
     } finally {
       setIsLoading(false);
