@@ -121,7 +121,10 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user, onAuthModalO
               }
             </p>
             <p className="text-xs text-gray-500">
-              Commencez par poser votre première question ci-dessous.
+              {import.meta.env.VITE_OPENAI_API_KEY ? 
+                "✨ IA avancée activée - Réponses personnalisées et détaillées" : 
+                "Mode de base - Configurez l'API OpenAI pour des réponses plus avancées"
+              }
             </p>
           </div>
         </div>
