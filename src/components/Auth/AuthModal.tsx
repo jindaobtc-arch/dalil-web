@@ -34,10 +34,25 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         await onSignIn(email, password);
       } else {
         await onSignUp(email, password);
+        setError('Inscription réussie ! Vous pouvez maintenant vous connecter.');
+        setMode('signin');
+        setEmail('');
+        setPassword('');
+        setIsLoading(false);
+        return;
       }
       onClose();
     } catch (err: any) {
-      setError(err.message || 'Une erreur est survenue');
+      console.error('Auth error:', err);
+      if (err.message?.includes('User already registered')) {
+        setError('Cet email est déjà utilisé. Essayez de vous connecter.');
+      } else if (err.message?.includes('Invalid email')) {
+        setError('Adresse email invalide.');
+      } else if (err.message?.includes('Password')) {
+        setError('Le mot de passe doit contenir au moins 6 caractères.');
+      } else {
+        setError('Une erreur est survenue lors de l\'inscription. Veuillez réessayer.');
+      }
     } finally {
       setIsLoading(false);
     }

@@ -19,14 +19,7 @@ function App() {
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
-        setUser({
-          id: session.user.id,
-          email: session.user.email || '',
-          plan: 'gratuit',
-          questionsUsed: 0,
-          questionsLimit: 15,
-          createdAt: session.user.created_at || ''
-        });
+        fetchUserProfile(session.user.id);
       }
       setLoading(false);
     });
@@ -34,14 +27,7 @@ function App() {
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
-        setUser({
-          id: session.user.id,
-          email: session.user.email || '',
-          plan: 'gratuit',
-          questionsUsed: 0,
-          questionsLimit: 15,
-          createdAt: session.user.created_at || ''
-        });
+        fetchUserProfile(session.user.id);
       } else {
         setUser(null);
       }
@@ -49,6 +35,46 @@ function App() {
 
     return () => subscription.unsubscribe();
   }, []);
+
+  const fetchUserProfile = async (userId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', userId)
+        .single();
+
+      if (error) {
+        console.error('Error fetching user profile:', error);
+        // Fallback to basic user data
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          setUser({
+            id: user.id,
+            email: user.email || '',
+            plan: 'gratuit',
+            questionsUsed: 0,
+            questionsLimit: 15,
+            createdAt: user.created_at || ''
+          });
+        }
+        return;
+      }
+
+      if (data) {
+        setUser({
+          id: data.id,
+          email: data.email,
+          plan: data.plan,
+          questionsUsed: data.questions_used,
+          questionsLimit: data.questions_limit,
+          createdAt: data.created_at
+        });
+      }
+    } catch (err) {
+      console.error('Error in fetchUserProfile:', err);
+    }
+  };
 
   const handleSignIn = async (email: string, password: string) => {
     const { error } = await signIn(email, password);
