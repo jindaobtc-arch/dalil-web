@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Send, Bookmark, BookmarkCheck, Loader2 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { getDalilResponse } from '../../lib/dalil-responses';
+import { supabase } from '../../lib/supabase';
 import type { ChatMessage, User } from '../../types';
 
 interface ChatInterfaceProps {
@@ -58,6 +59,19 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user, onAuthModalO
     try {
       const response = await getDalilResponse(question);
       
+      // Sauvegarder le message dans la base de données
+      const { error: saveError } = await supabase
+        .from('chat_messages')
+        .insert({
+          user_id: user.id,
+          question: question,
+          response: response
+        });
+
+      if (saveError) {
+        console.error('Erreur lors de la sauvegarde du message:', saveError);
+      }
+
       const responseMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         userId: user.id,
@@ -67,6 +81,9 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user, onAuthModalO
       };
 
       setMessages(prev => [...prev, responseMessage]);
+      
+      // Mettre à jour le compteur de questions de l'utilisateur localement
+      // Le trigger de la base de données s'occupera de l'incrémenter côté serveur
     } catch (error) {
       console.error('Error getting response:', error);
     } finally {
