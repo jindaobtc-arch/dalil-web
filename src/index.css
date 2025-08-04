@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f8fafc;
+    color: #1a202c;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .arabic-text {
+    font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+    direction: rtl;
+    text-align: right;
+    line-height: 1.8;
+  }
+}
+
+@layer components {
+  .h-screen-minus-header {
+    height: calc(100vh - 4rem);
+  }
+  
+  .prose {
+    color: #374151;
+    line-height: 1.7;
+  }
+  
+  .prose p {
+    margin-bottom: 1rem;
+  }
+  
+  .prose strong {
+    font-weight: 600;
+    color: #111827;
+  }
+  
+  .prose em {
+    font-style: italic;
+    color: #059669;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .shadow-islamic {
+    box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.1), 0 2px 4px -1px rgba(34, 197, 94, 0.06);
+  }
+  
+  .bg-islamic-gradient {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  }
+  
+  .text-islamic-primary {
+    color: #16a34a;
+  }
+  
+  .border-islamic {
+    border-color: #bbf7d0;
+  }
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  .prose {
+    font-size: 0.875rem;
+  }
+}
+
+/* Loading animation */
+@keyframes pulse-green {
+  0%, 100% {
+    opacity: 1;
+    background-color: #22c55e;
+  }
+  50% {
+    opacity: 0.7;
+    background-color: #16a34a;
+  }
+}
+
+.pulse-green {
+  animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Focus states for accessibility */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #22c55e;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .prose {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+}
