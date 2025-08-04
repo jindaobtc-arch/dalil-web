@@ -109,14 +109,21 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user, onAuthModalO
               <BookmarkCheck className="w-8 h-8 text-green-600" />
             </div>
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              Assalamu alaykum wa rahmatullahi wa barakatuh
-            </h2>
-            <p className="text-gray-600 mb-4">
-              Je suis Dalil, votre assistant islamique éducatif. Posez-moi vos questions sur l'Islam et je vous fournirai des réponses basées sur le Coran et la Sunnah authentique.
-            </p>
-            <p className="text-sm text-green-600">
-              Commencez par poser votre première question ci-dessous.
-            </p>
+  السّلام عليكم ورحمة الله وبركاته
+</h2>
+<p className="text-gray-600 mb-4">
+  Louange à Allâh, Seigneur des Mondes. Que la paix et les bénédictions d’Allâh soient sur notre Prophète Muhammad ﷺ, sa famille, ses Compagnons et ceux qui suivent leur voie avec droiture jusqu’au Jour de la Rétribution.
+</p>
+<p className="text-gray-600 mb-4">
+  Je suis <strong>Dalil</strong>, un assistant virtuel islamique conçu pour transmettre la science authentique selon le Coran, la Sunnah authentique et la compréhension des Salaf as-Sâlih. 
+</p>
+<p className="text-gray-600 mb-4">
+  Posez vos questions en lien avec la croyance, le fiqh, les actes d’adoration, le comportement ou d'autres domaines de la religion. Je m’efforcerai de vous répondre avec des sources fiables, tirées des paroles d’Allâh, de Son Messager ﷺ et des savants reconnus pour leur science et leur droiture.
+</p>
+<p className="text-sm text-green-600">
+  Commencez par poser votre première question ci-dessous in shâ’ Allâh.
+</p>
+
           </div>
         </div>
       )}
