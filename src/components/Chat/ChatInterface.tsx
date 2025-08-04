@@ -115,7 +115,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user, onAuthModalO
   Louange à Allâh, Seigneur des Mondes. Que la paix et les bénédictions d’Allâh soient sur notre Prophète Muhammad ﷺ, sa famille, ses Compagnons et ceux qui suivent leur voie avec droiture jusqu’au Jour de la Rétribution.
 </p>
 <p className="text-gray-600 mb-4">
-  Je suis <strong>Dalil</strong>, un assistant virtuel islamique conçu pour transmettre la science authentique selon le Coran, la Sunnah authentique et la compréhension des Salaf as-Sâlih. 
+  Je suis <strong>Dalil</strong>, un assistant virtuel conçu pour transmettre la science authentique selon le Coran, la Sunnah authentique et la compréhension des Salaf as-Sâlih. 
 </p>
 <p className="text-gray-600 mb-4">
   Posez vos questions en lien avec la croyance, le fiqh, les actes d’adoration, le comportement ou d'autres domaines de la religion. Je m’efforcerai de vous répondre avec des sources fiables, tirées des paroles d’Allâh, de Son Messager ﷺ et des savants reconnus pour leur science et leur droiture.
