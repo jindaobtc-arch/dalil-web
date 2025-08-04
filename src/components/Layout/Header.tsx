@@ -30,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({ user, onSignOut, onMenuToggle, o
               </div>
               <div>
                 <h1 className="text-xl font-bold text-gray-900">Dalil</h1>
-                <p className="text-xs text-green-600 -mt-1">Assistant Islamique</p>
+                <p className="text-xs text-green-600 -mt-1">Assistant en sciences religieuses</p>
               </div>
             </div>
           </div>
