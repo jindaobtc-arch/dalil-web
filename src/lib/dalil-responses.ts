@@ -1,6 +1,18 @@
+import { getDalilAIResponse } from './openai-client';
+
 export const getDalilResponse = async (question: string): Promise<string> => {
-  // Simulate Dalil's Islamic assistant response
-  await new Promise(resolve => setTimeout(resolve, 1500));
+  // Vérifier si l'API OpenAI est configurée
+  if (import.meta.env.VITE_OPENAI_API_KEY) {
+    try {
+      return await getDalilAIResponse(question);
+    } catch (error) {
+      console.error('Erreur API OpenAI, utilisation des réponses de fallback:', error);
+      // Continuer avec les réponses de fallback en cas d'erreur
+    }
+  }
+
+  // Réponses de fallback (système actuel amélioré)
+  await new Promise(resolve => setTimeout(resolve, 1000));
   
   const lowerQuestion = question.toLowerCase();
   

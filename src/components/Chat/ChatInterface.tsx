@@ -112,9 +112,15 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user, onAuthModalO
               Assalamu alaykum wa rahmatullahi wa barakatuh
             </h2>
             <p className="text-gray-600 mb-4">
-              Je suis Dalil, votre assistant islamique éducatif. Posez-moi vos questions sur l'Islam et je vous fournirai des réponses basées sur le Coran et la Sunnah authentique.
+              Je suis Dalil, votre assistant islamique éducatif. Posez-moi vos questions sur l'Islam et je vous fournirai des réponses basées sur le Coran et la Sunnah authentique selon la compréhension des Salaf as-Salih.
             </p>
-            <p className="text-sm text-green-600">
+            <p className="text-sm text-green-600 mb-2">
+              {import.meta.env.VITE_OPENAI_API_KEY ? 
+                "✨ IA avancée activée - Réponses personnalisées et détaillées" : 
+                "Mode de base - Configurez l'API OpenAI pour des réponses plus avancées"
+              }
+            </p>
+            <p className="text-xs text-gray-500">
               Commencez par poser votre première question ci-dessous.
             </p>
           </div>
