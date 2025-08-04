@@ -69,6 +69,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   }}
                 ></div>
               </div>
+              {user.questionsUsed >= user.questionsLimit && (
+                <p className="text-xs text-red-600 mt-1">
+                  Limite atteinte - Upgradez votre plan
+                </p>
+              )}
             </div>
           </div>
         )}

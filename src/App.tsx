@@ -46,17 +46,21 @@ function App() {
 
       if (error) {
         console.error('Error fetching user profile:', error);
-        // Fallback to basic user data
+        
+        // Essayer de créer le profil utilisateur s'il n'existe pas
         const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-          setUser({
-            id: user.id,
-            email: user.email || '',
-            plan: 'gratuit',
-            questionsUsed: 0,
-            questionsLimit: 15,
-            createdAt: user.created_at || ''
+        if (user && error.code === 'PGRST116') { // Pas de ligne trouvée
+          const { error: createError } = await supabase.rpc('ensure_user_profile', {
+            user_id: user.id,
+            user_email: user.email || ''
           });
+          
+          if (!createError) {
+            // Réessayer de récupérer le profil
+            setTimeout(() => fetchUserProfile(userId), 1000);
+          } else {
+            console.error('Erreur lors de la création du profil:', createError);
+          }
         }
         return;
       }
