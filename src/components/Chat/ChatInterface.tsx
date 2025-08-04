@@ -129,12 +129,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user, onAuthModalO
     "Mode de base : configurez l’API OpenAI pour activer les fonctionnalités avancées"
   }
 </p>
-            <p className="text-xs text-gray-500">
-              {import.meta.env.VITE_OPENAI_API_KEY ? 
-                "✨ IA avancée activée - Réponses personnalisées et détaillées" : 
-                "Mode de base - Configurez l'API OpenAI pour des réponses plus avancées"
-              }
-            </p>
+        
           </div>
         </div>
       )}
