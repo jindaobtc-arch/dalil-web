@@ -79,7 +79,7 @@ function App() {
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'chat':
-        return <ChatInterface user={user} />;
+        return <ChatInterface user={user} onAuthModalOpen={() => setAuthModalOpen(true)} />;
       case 'search':
         return (
           <div className="flex items-center justify-center h-full">
@@ -146,6 +146,7 @@ function App() {
         user={user} 
         onSignOut={handleSignOut}
         onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
+        onAuthModalOpen={() => setAuthModalOpen(true)}
       />
       
       <div className="flex pt-16">

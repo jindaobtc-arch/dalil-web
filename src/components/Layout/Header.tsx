@@ -6,9 +6,10 @@ interface HeaderProps {
   user?: any;
   onSignOut: () => void;
   onMenuToggle: () => void;
+  onAuthModalOpen: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ user, onSignOut, onMenuToggle }) => {
+export const Header: React.FC<HeaderProps> = ({ user, onSignOut, onMenuToggle, onAuthModalOpen }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   return (
@@ -75,10 +76,17 @@ export const Header: React.FC<HeaderProps> = ({ user, onSignOut, onMenuToggle })
               </div>
             ) : (
               <div className="flex items-center space-x-2">
-                <Button variant="outline" size="sm">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={onAuthModalOpen}
+                >
                   Connexion
                 </Button>
-                <Button size="sm">
+                <Button 
+                  size="sm"
+                  onClick={onAuthModalOpen}
+                >
                   S'inscrire
                 </Button>
               </div>

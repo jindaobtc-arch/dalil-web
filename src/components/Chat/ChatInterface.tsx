@@ -6,9 +6,10 @@ import type { ChatMessage, User } from '../../types';
 
 interface ChatInterfaceProps {
   user?: User;
+  onAuthModalOpen?: () => void;
 }
 
-export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user }) => {
+export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user, onAuthModalOpen }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +28,9 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user }) => {
     if (!currentQuestion.trim() || isLoading) return;
 
     if (!user) {
-      alert('Veuillez vous connecter pour poser une question.');
+      if (onAuthModalOpen) {
+        onAuthModalOpen();
+      }
       return;
     }
 
@@ -173,11 +176,11 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user }) => {
             onChange={(e) => setCurrentQuestion(e.target.value)}
             placeholder="Posez votre question sur l'Islam..."
             className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-            disabled={isLoading || !user}
+            disabled={isLoading}
           />
           <Button
             type="submit"
-            disabled={isLoading || !currentQuestion.trim() || !user}
+            disabled={isLoading || !currentQuestion.trim()}
             className="flex items-center space-x-2"
           >
             <Send className="w-4 h-4" />
@@ -187,7 +190,13 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user }) => {
         
         {!user && (
           <p className="text-sm text-gray-500 mt-2 text-center">
-            Connectez-vous pour poser des questions à Dalil
+            <button 
+              onClick={onAuthModalOpen}
+              className="text-green-600 hover:text-green-700 underline"
+            >
+              Connectez-vous
+            </button>
+            {' '}pour poser des questions à Dalil
           </p>
         )}
       </div>
